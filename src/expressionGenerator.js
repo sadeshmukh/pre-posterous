@@ -1,9 +1,3 @@
-const numbers = [];
-// Generates numbers 1 - 15
-for (let i = 1; i <= 15 + 1; i++) {
-  numbers.push(i);
-}
-
 const operatorList = ["*", "+", "-"];
 const operatorFunctions = {
   "*": (a, b) => a * b,
@@ -15,6 +9,11 @@ const operatorFunctions = {
 const probabilityDefault = 0;
 const minNumberDefault = 3;
 const maxNumberDefault = 15;
+
+const numbers = [];
+for (let i = minNumberDefault; i <= maxNumberDefault; i++) {
+  numbers.push(i);
+}
 
 function randomNumber(min, max) {
   // Inclusive of min/max

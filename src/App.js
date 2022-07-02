@@ -5,7 +5,6 @@ import {
   solvePrefix,
   solvePostfix,
 } from "./expressionGenerator";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col, Container, Button, Fade } from "react-bootstrap";
 import Expression from "./Components/expressionVisualizer";
 import Game from "./Components/Game";
@@ -75,7 +74,7 @@ function App() {
   }
 
   return (
-    <div className="p-5">
+    <div className="p-5 bg-dark text-light vh-100">
       <Fade in={pageShown === "welcome"}>
         <div hidden={pageShown !== "welcome"} className="text-center">
           <Button
@@ -116,7 +115,7 @@ function App() {
       </Fade>
       <Fade in={pageShown === "postfixExplanation"} timeout={1000}>
         <div
-          className="m-5 p-3 bg-light rounded-pill text-center"
+          className="m-5 p-3 bg-secondary rounded-pill text-center text-dark"
           hidden={pageShown !== "postfixExplanation"}
         >
           <div className="fs-5 text-center h-50">
@@ -128,6 +127,7 @@ function App() {
             ...the operator is after the numbers.
           </div>
           <Button
+            className="mt-3"
             variant="success"
             size="lg"
             onClick={() => startGame("postfix")}
