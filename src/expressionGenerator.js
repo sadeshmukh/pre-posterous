@@ -1,9 +1,9 @@
 const operatorList = ["*", "+", "-"];
 const operatorFunctions = {
-  "*": (a, b) => a * b,
-  "/": (a, b) => a / b,
-  "+": (a, b) => a + b,
-  "-": (a, b) => a - b,
+  "*": (a, b) => parseInt(a) * parseInt(b),
+  "/": (a, b) => parseInt(a) / parseInt(b),
+  "+": (a, b) => parseInt(a) + parseInt(b),
+  "-": (a, b) => parseInt(a) - parseInt(b),
 };
 
 const probabilityDefault = 0;
@@ -67,32 +67,39 @@ function generatePostfix(
 
 // solvePrefix takes a valid collapsed prefix expression as input
 function solvePrefix(prefixExpression) {
-  let operatorStack = [];
-  let currentNumber = null;
-  for (let i = 0; i < prefixExpression.length; i++) {
-    if (operatorList.includes(prefixExpression[i])) {
-      operatorStack.push(prefixExpression[i]);
-    } else {
-      if (currentNumber === null) {
-        currentNumber = prefixExpression[i];
-      } else {
-        // Looks up operator in functions, then sets the current number to the operation completed
-        currentNumber = operatorFunctions[
-          operatorStack[operatorStack.length - 1]
-        ](currentNumber, prefixExpression[i]);
-        // Removes operator from stack
-        operatorStack.pop();
+  let symbolStack = [];
+
+  function simplify(symbolStack) {
+    while (symbolStack.length >= 3) {
+      let [operator, leftOperand, rightOperand] = symbolStack.slice(-3);
+      if (
+        !operatorList.includes(operator) ||
+        isNaN(leftOperand) ||
+        isNaN(rightOperand)
+      ) {
+        break;
       }
+
+      symbolStack.pop();
+      symbolStack.pop();
+      symbolStack.pop();
+      symbolStack.push(operatorFunctions[operator](leftOperand, rightOperand));
     }
   }
-  return currentNumber;
+
+  for (let token of prefixExpression) {
+    symbolStack.push(token);
+    simplify(symbolStack);
+  }
+  console.log(symbolStack);
+  return symbolStack[0];
 }
 
 function solvePostfix(postfixExpression) {
   let numberStack = [];
   let newNumber;
   for (let i = 0; i < postfixExpression.length; i++) {
-    if (numbers.includes(postfixExpression[i])) {
+    if (!isNaN(postfixExpression[i])) {
       numberStack.push(postfixExpression[i]);
     } else {
       newNumber = operatorFunctions[postfixExpression[i]](
