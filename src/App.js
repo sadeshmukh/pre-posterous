@@ -157,8 +157,8 @@ function App() {
                 <Fade in={explanationState === 4}>
                   <section id="prefixExplain4" hidden={explanationState !== 4}>
                     <h1 className="mb-5">Why prefix?</h1>
-                    Prefix notation removes the need for operations, since each
-                    operator is completely unambiguous.
+                    Prefix notation removes the need for parentheses, since the
+                    order of operations is completely unambiguous.
                   </section>
                 </Fade>
                 <Fade in={explanationState === 5}>
@@ -361,8 +361,8 @@ function App() {
                 <Fade in={explanationState === 4}>
                   <section id="postfixExplain4" hidden={explanationState !== 4}>
                     <h1 className="mb-5">Why postfix?</h1>
-                    Postfix notation removes the need for operations, since each
-                    operator is completely unambiguous.
+                    Postfix notation removes the need for parentheses, since the
+                    order of operations is completely unambiguous.
                   </section>
                 </Fade>
                 <Fade in={explanationState === 5}>
