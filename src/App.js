@@ -332,7 +332,7 @@ function App() {
                 <Fade in={explanationState === 1}>
                   <section id="postfixExplain1" hidden={explanationState !== 1}>
                     <div>
-                      <h1>What is prefix notation?</h1>
+                      <h1>What is postfix notation?</h1>
                       <Expression
                         expression={[3, 4, "+", 3, "*"]}
                         className=""
